@@ -6,7 +6,7 @@ const PostsList = (props) => {
     const posts = usePostsResults();
 
     return (
-        <div className="ui list">{
+        <div className="ui relaxed list">{
             posts.map(post => {
                 return (
                     <Post {...post} key={post.id} />
