@@ -1,16 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setSelectedPost } from '../../redux/actions/posts';
+import { Link } from 'react-router-dom';
 
-const Post = ({ id, title, body }) => {
+const Post = ({ id, title, body, setSelectedPost }) => {
+
     return (
         <div className="item">
             <div className="ui segment">
                 <div className="ui header">{title}</div>
                 <div className="ui description">{body}</div>
                 <div className="ui section divider" />
-                <a className="ui container right aligned"><i className="icon comments"></i></a>
+                <Link className="ui container right aligned"
+                    onClick={() => setSelectedPost({ id, title, body })}
+                    to={`/post/${id}`}><i className="icon comments"></i></Link>
             </div>
         </div>
     )
 };
 
-export default Post;
+const mapDispatchToProps = dispatch => ({
+    setSelectedPost: post => { dispatch(setSelectedPost(post)) }
+});
+
+export default connect(undefined, mapDispatchToProps)(Post);

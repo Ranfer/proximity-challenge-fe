@@ -1,6 +1,7 @@
 import React from 'react';
 import usePostsResults from '../../services/usePostsResults';
 import Post from './Post';
+import { connect } from 'react-redux';
 
 const PostsList = (props) => {
     const posts = usePostsResults();
@@ -16,4 +17,8 @@ const PostsList = (props) => {
     )
 }
 
-export default PostsList;
+const mapStateToProps = store => ({
+    posts: store.posts.posts
+});
+
+export default connect(mapStateToProps)(PostsList);
